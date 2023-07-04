@@ -17,9 +17,5 @@ namespace Tabler.Docs.Services
         {
             OnSettingsUpdated.Invoke();
         }
-
-
-
-
     }
 }

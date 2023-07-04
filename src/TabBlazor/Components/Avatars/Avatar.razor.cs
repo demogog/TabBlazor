@@ -25,11 +25,12 @@ namespace TabBlazor
     public partial class Avatar : TablerBaseComponent
     {
         [Parameter] public string Data { get; set; } = "";
+        [Parameter] public Uri Url { get; set; } = null;
         [Parameter] public AvatarSize Size { get; set; } = AvatarSize.Default;
         [Parameter] public AvatarRounded Rounded { get; set; } = AvatarRounded.Default;
-
-        protected string Style => string.IsNullOrWhiteSpace(Data) ? string.Empty : $"{GetUnmatchedParameter("style")} background-image:url('{Data}')";
-        
+                      
+        protected string Style => (Url != null) ? $"{GetUnmatchedParameter("style")} background-image:url('{Url}')"
+            : (string.IsNullOrWhiteSpace(Data) ? string.Empty : $"{GetUnmatchedParameter("style")} background-image:url('{Data}')");
         protected override string ClassNames => ClassBuilder
             .Add("avatar")
             .Add(BackgroundColor.GetColorClass("bg", suffix: "lt"))
